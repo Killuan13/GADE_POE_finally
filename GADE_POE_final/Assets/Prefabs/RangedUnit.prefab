@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3237755828084859508}
   - component: {fileID: 5125188487678535855}
   - component: {fileID: 3835585238268811746}
+  - component: {fileID: 4819196165981469113}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: RangedUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,3 +114,16 @@ MonoBehaviour:
   mat:
   - {fileID: 2100000, guid: cf76cec675ef18f4aa8ffba4a2e5e854, type: 2}
   - {fileID: 2100000, guid: 2847b12669618e74c859d0a3afc65437, type: 2}
+--- !u!114 &4819196165981469113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115597175320991440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5ebef3182b1b646823cd6c841d3db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 5
