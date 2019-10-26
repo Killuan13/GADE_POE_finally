@@ -24,6 +24,10 @@ public class CameraMovements : MonoBehaviour
         {
             transform.position += new Vector3(0, speed * Time.deltaTime * 10, 0);
         }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            transform.position += new Vector3(0, speed * Time.deltaTime * (-10), 0);
+        }
     }
 
     void cameraMove()

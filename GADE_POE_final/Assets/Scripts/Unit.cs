@@ -22,7 +22,7 @@ public abstract class Unit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public abstract class Unit : MonoBehaviour
     {
         if (!IsInRange(GetClosestUnit()))
         {
-            transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, spd * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, spd * Time.deltaTime);   
         }
     }
 
@@ -69,4 +69,5 @@ public abstract class Unit : MonoBehaviour
         }
         return unit;
     }
+    
 }

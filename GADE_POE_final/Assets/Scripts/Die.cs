@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Die : MonoBehaviour
 {
-    [SerializeField] int duration = 5;
+    [SerializeField] int duration = 7;
     float timer;
     // Start is called before the first frame update
     void Start()
