@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Die : MonoBehaviour
+public class Die : Unit
 {
-    [SerializeField] int duration = 7;
-    float timer;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +14,8 @@ public class Die : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= duration)
+        
+        if (hp >= 0)
         {
             Destroy(gameObject);
         }

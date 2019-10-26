@@ -8,6 +8,7 @@ TagManager:
   - team 2
   - ground
   - resource
+  - team 3
   layers:
   - Default
   - TransparentFX

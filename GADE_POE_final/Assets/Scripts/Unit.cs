@@ -32,6 +32,7 @@ public abstract class Unit : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, spd * Time.deltaTime);   
         }
+        Attack();
     }
 
     protected bool IsInRange(GameObject Enemy)
@@ -56,6 +57,9 @@ public abstract class Unit : MonoBehaviour
             case 2:
                 units = GameObject.FindGameObjectsWithTag("team 1");
                 break;
+            case 3:
+                units = GameObject.FindGameObjectsWithTag("team 1");
+                break;
         }
         float distance = 9999;
         foreach (GameObject temp in units)
@@ -68,6 +72,14 @@ public abstract class Unit : MonoBehaviour
             }
         }
         return unit;
+    }
+
+    
+
+    protected int Attack()
+    {
+        hp -= atk;
+        return hp;
     }
     
 }

@@ -485,6 +485,8 @@ MonoBehaviour:
   options:
   - {fileID: 1341766310626235932, guid: ee28adaaa8a15304780e097575760c8a, type: 3}
   - {fileID: 2115597175320991440, guid: 7148f08be2b9a184890b5a9f27481b64, type: 3}
+  - {fileID: 3382134137211456479, guid: 72dc8972e686f4a43820421c293b721d, type: 3}
+  - {fileID: 4597948037938053169, guid: ef47652a6af940d4b86ff17a6cb0a6f9, type: 3}
 --- !u!1 &1186596030
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +556,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'ResourceText
+
+'
 --- !u!222 &1186596033
 CanvasRenderer:
   m_ObjectHideFlags: 0

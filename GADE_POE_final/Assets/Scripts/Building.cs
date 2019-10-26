@@ -4,13 +4,13 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
-    [SerializeField] protected int bHp;
-    [SerializeField] protected int bMaxHP;
+    [SerializeField] protected int hp;
+    [SerializeField] protected int maxHp;
     [SerializeField] protected int bTeam;
     [SerializeField] protected Material[] bMat;
 
-    public int BHp { get => bHp; set => bHp = value; }
-    public int BMaxHP { get => bMaxHP; set => bMaxHP = value; }
+    public int Hp { get => hp; set => hp = value; }
+    public int MaxHp { get => maxHp; set => maxHp = value; }
     public int BTeam { get => bTeam; set => bTeam = value; }
 
     // Start is called before the first frame update
