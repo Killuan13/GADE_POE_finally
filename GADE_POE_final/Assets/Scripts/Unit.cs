@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Unit : MonoBehaviour
 {
+    protected Image healthBar;
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHP;
     [SerializeField] protected int atk;
@@ -32,7 +34,9 @@ public abstract class Unit : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, spd * Time.deltaTime);   
         }
+        healthBar.fillAmount = (float)hp / maxHP;
         Attack();
+        IsDead();
     }
 
     protected bool IsInRange(GameObject Enemy)
@@ -49,18 +53,26 @@ public abstract class Unit : MonoBehaviour
     {
         GameObject unit = null;
         GameObject[] units = null;
+        GameObject[] wizards = null;
+
         switch (team)
         {
             case 1:
                 units = GameObject.FindGameObjectsWithTag("team 2");
+                wizards = GameObject.FindGameObjectsWithTag("team 3");
                 break;
             case 2:
                 units = GameObject.FindGameObjectsWithTag("team 1");
+                wizards = GameObject.FindGameObjectsWithTag("team 3");
                 break;
             case 3:
                 units = GameObject.FindGameObjectsWithTag("team 1");
-                break;
+                wizards = GameObject.FindGameObjectsWithTag("team 2");
+                break;        
         }
+        GameObject[] newUnits = null;
+        newUnits = new GameObject[units.Length + wizards.Length];
+        System.Array.Resize(ref units, newUnits.Length);
         float distance = 9999;
         foreach (GameObject temp in units)
         {
@@ -74,12 +86,32 @@ public abstract class Unit : MonoBehaviour
         return unit;
     }
 
-    
-
-    protected int Attack()
+    protected void Attack()
     {
-        hp -= atk;
-        return hp;
+        if (IsInRange(GetClosestUnit()))
+        {
+            if (GetClosestUnit().GetComponent<Unit>())
+            {
+                GetClosestUnit().GetComponent<Unit>().hp -= atk;
+            }
+
+            if (GetClosestUnit().GetComponent<Building>())
+            {
+                GetClosestUnit().GetComponent<Building>().Hp -= atk;
+            }
+        }
     }
+
+    protected bool IsDead()
+    {
+        bool returnVal = false;
+        if (hp <= 0)
+        {
+            returnVal = true;
+            Destroy(gameObject);
+        }
+        return returnVal;
+    }
+
     
 }

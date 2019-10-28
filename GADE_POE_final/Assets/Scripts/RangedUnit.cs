@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RangedUnit : Unit
 {
     // Start is called before the first frame update
     void Start()
     {
-        hp = 50;
+        healthBar = GetComponentsInChildren<Image>()[1];
+        hp = 20;
         maxHP = hp;
         atk = 2;
         range = 2;

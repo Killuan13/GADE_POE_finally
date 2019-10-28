@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MeleeUnit : Unit
+public class ResourceBuilding : Building
 {
     // Start is called before the first frame update
     void Start()
     {
-        healthBar = GetComponentsInChildren<Image>()[1];
-        hp = 20;
-        maxHP = hp;
-        atk = 2;
-        range = 1;
-        spd = 1;
-        team = Random.Range(1, 3);
-        GetComponent<MeshRenderer>().material = mat[team - 1];
-        switch (team)
+        hp = 10;
+        maxHp = hp;
+        bTeam = Random.Range(1, 3);
+        GetComponent<MeshRenderer>().material = bMat[bTeam - 1];
+        switch (bTeam)
         {
             case 1:
                 gameObject.tag = "team 1";
@@ -25,6 +21,6 @@ public class MeleeUnit : Unit
                 gameObject.tag = "team 2";
                 break;
         }
+        healthbar = GetComponentsInChildren<Image>()[1];
     }
-
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class factoryBuilding : Building
 {
@@ -8,7 +9,7 @@ public class factoryBuilding : Building
     // Start is called before the first frame update
     void Start()
     {
-        hp = 20;
+        hp = 10;
         maxHp = hp;
         bTeam = Random.Range(1, 3);
         GetComponent<MeshRenderer>().material = bMat[bTeam - 1];
@@ -21,5 +22,6 @@ public class factoryBuilding : Building
                 gameObject.tag = "team 2";
                 break;
         }
+        healthbar = GetComponentsInChildren<Image>()[1];
     }
 }
