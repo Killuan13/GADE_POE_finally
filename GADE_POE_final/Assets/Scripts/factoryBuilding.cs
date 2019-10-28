@@ -24,4 +24,5 @@ public class factoryBuilding : Building
         }
         healthbar = GetComponentsInChildren<Image>()[1];
     }
+
 }

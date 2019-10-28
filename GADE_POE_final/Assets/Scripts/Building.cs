@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Building : MonoBehaviour
+public class Building : MonoBehaviour
 {
     protected Image healthbar;
     [SerializeField] protected int hp;
@@ -26,8 +26,10 @@ public abstract class Building : MonoBehaviour
     void Update()
     {
         healthbar.fillAmount = (float)hp / maxHp;
-        hp -= GetComponent<Unit>().Atk;
-        IsDead();
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     protected bool IsDead()

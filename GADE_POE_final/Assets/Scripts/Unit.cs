@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public abstract class Unit : MonoBehaviour
+public class Unit : MonoBehaviour
 {
     protected Image healthBar;
     [SerializeField] protected int hp;
@@ -34,9 +35,28 @@ public abstract class Unit : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, spd * Time.deltaTime);   
         }
+
         healthBar.fillAmount = (float)hp / maxHP;
         Attack();
-        IsDead();
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        if (team == 3)
+        {
+            if (!IsInRange(GetClosestUnit()))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, GetClosestUnit().transform.position, spd * Time.deltaTime);
+            }
+
+            healthBar.fillAmount = (float)hp / maxHP;
+            Attack();
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     protected bool IsInRange(GameObject Enemy)
@@ -44,9 +64,10 @@ public abstract class Unit : MonoBehaviour
         bool returnVal = false;
         if (Vector3.Distance(transform.position, Enemy.transform.position) <= range)
         {
-            return true;
+            returnVal = true;
         }
-        else return returnVal;
+        else returnVal = false;
+        return returnVal;
     }
 
     protected GameObject GetClosestUnit()
@@ -60,19 +81,36 @@ public abstract class Unit : MonoBehaviour
             case 1:
                 units = GameObject.FindGameObjectsWithTag("team 2");
                 wizards = GameObject.FindGameObjectsWithTag("team 3");
+                int tempSize = units.Length;
+                Array.Resize(ref units, units.Length + wizards.Length);
+                for (int i = tempSize; i < units.Length; i++)
+                {
+                    units[i] = wizards[i - tempSize];
+                }
+                
                 break;
             case 2:
                 units = GameObject.FindGameObjectsWithTag("team 1");
                 wizards = GameObject.FindGameObjectsWithTag("team 3");
+                tempSize = units.Length;
+                Array.Resize(ref units, units.Length + wizards.Length);
+                for (int i = tempSize; i < units.Length; i++)
+                {
+                    units[i] = wizards[i - tempSize];
+                }
                 break;
             case 3:
                 units = GameObject.FindGameObjectsWithTag("team 1");
                 wizards = GameObject.FindGameObjectsWithTag("team 2");
+                tempSize = units.Length;
+                Array.Resize(ref units, units.Length + wizards.Length);
+                for (int i = tempSize; i < units.Length; i++)
+                {
+                    units[i] = wizards[i - tempSize];
+                }
                 break;        
         }
-        GameObject[] newUnits = null;
-        newUnits = new GameObject[units.Length + wizards.Length];
-        System.Array.Resize(ref units, newUnits.Length);
+
         float distance = 9999;
         foreach (GameObject temp in units)
         {
